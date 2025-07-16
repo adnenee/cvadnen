@@ -2198,6 +2198,9 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateY(0);
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         /* Minimized state when scrolling */
@@ -2216,36 +2219,50 @@
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            gap: 40px;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: auto;
+            min-height: 60px;
         }
-        
+
         .nav-logo {
-            color: #ffffff;
+            color: #00bfff;
             font-weight: 700;
             font-size: 25px !important;
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-left: -200px;
+            margin-left: 0;
+            white-space: nowrap;
+            overflow: visible;
+            text-overflow: unset;
+            max-width: none;
+            text-shadow: 0 0 5px rgba(0, 191, 255, 0.3), 0 0 10px rgba(0, 191, 255, 0.2);
         }
 
         .nav-menu.scrolled .nav-logo {
             font-size: 18px !important;
-            opacity: 0.9;
+            opacity: 1;
+            color: #00bfff !important;
+            text-shadow: 0 0 4px rgba(0, 191, 255, 0.25), 0 0 8px rgba(0, 191, 255, 0.15);
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             list-style: none;
             margin: 0;
             padding: 0;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            flex: 1;
+            overflow: hidden;
         }
 
         .nav-links li {
@@ -2596,6 +2613,66 @@
             cursor: pointer;
         }
 
+        /* Navigation responsive styles for medium screens */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .nav-container {
+                padding: 0 10px;
+                gap: 10px;
+            }
+
+            .nav-logo {
+                font-size: 18px !important;
+                max-width: none;
+                overflow: visible;
+                text-overflow: unset;
+                white-space: nowrap;
+            }
+
+            .nav-links {
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+                padding: 2px 3px;
+            }
+
+            .nav-important {
+                padding: 2px 4px !important;
+                font-size: 8px !important;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1200px) {
+            .nav-container {
+                padding: 0 15px;
+                gap: 15px;
+            }
+
+            .nav-logo {
+                font-size: 20px !important;
+                max-width: none;
+                overflow: visible;
+                text-overflow: unset;
+                white-space: nowrap;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+                padding: 3px 5px;
+            }
+
+            .nav-important {
+                padding: 3px 6px !important;
+                font-size: 9px !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 padding: 10px 15px;
@@ -2603,7 +2680,11 @@
 
             .nav-logo {
                 font-size: 16px !important;
-                margin-left: -20px !important;
+                margin-left: 0 !important;
+                max-width: none;
+                overflow: visible;
+                text-overflow: unset;
+                white-space: nowrap;
             }
 
             .nav-links {
@@ -2655,7 +2736,16 @@
 
             .nav-logo {
                 font-size: 14px !important;
-                margin-left: -10px !important;
+                margin-left: 0 !important;
+                max-width: none;
+                overflow: visible;
+                text-overflow: unset;
+                white-space: nowrap;
+            }
+
+            .nav-container {
+                padding: 0 10px;
+                gap: 10px;
             }
 
             .nav-links {
@@ -2856,8 +2946,8 @@
                             <div class="stat-label">Supervised PhD Students</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">International Projects</div>
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">National and International Projects</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-number">55</div>
