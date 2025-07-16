@@ -2611,6 +2611,16 @@
             color: #ffffff;
             font-size: 18px;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            z-index: 1002;
+            position: relative;
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #00bfff;
         }
 
         /* Navigation responsive styles for medium screens */
@@ -2676,6 +2686,20 @@
         @media (max-width: 768px) {
             .nav-menu {
                 padding: 10px 15px;
+                position: fixed !important;
+                overflow: visible !important;
+                overflow-x: visible !important;
+                overflow-y: visible !important;
+            }
+
+            .nav-container {
+                position: relative;
+                overflow: visible !important;
+            }
+
+            /* Show mobile toggle button only on mobile */
+            #navToggle {
+                display: block !important;
             }
 
             .nav-logo {
@@ -2687,46 +2711,32 @@
                 white-space: nowrap;
             }
 
+            /* Hide original nav-links on mobile - we use the new mobileMenu instead */
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.98);
-                flex-direction: column;
-                padding: 15px;
-                gap: 5px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
+                display: none !important;
             }
 
             .nav-toggle {
-                display: block;
+                display: block !important;
                 font-size: 16px;
                 padding: 8px;
-            }
-
-            .nav-links a {
-                padding: 12px 16px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                font-size: 14px;
-                text-align: center;
-                border-radius: 4px;
-                transition: all 0.3s ease;
-            }
-
-            .nav-links a:hover {
+                min-height: 44px;
+                min-width: 44px;
                 background: rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
             }
 
-            .nav-links a:last-child {
-                border-bottom: none;
+            /* Hide mobile menu button on desktop */
+            @media (min-width: 769px) {
+                #navToggle {
+                    display: none !important;
+                }
+                #mobileMenu {
+                    display: none !important;
+                }
             }
+
+
         }
 
         @media (max-width: 480px) {
@@ -2748,14 +2758,7 @@
                 gap: 10px;
             }
 
-            .nav-links {
-                padding: 10px;
-            }
 
-            .nav-links a {
-                padding: 10px 12px;
-                font-size: 13px;
-            }
 
             .nav-toggle {
                 font-size: 14px;
@@ -2907,9 +2910,47 @@
                 <li><a href="#scientific">Publication and Production</a></li>
                 <li><a href="#media">Media</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle">
+            <button class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()" style="display: none; background: rgba(255,255,255,0.2); border: none; color: white; padding: 10px; cursor: pointer; border-radius: 6px; transition: all 0.3s ease;">
                 <i class="fas fa-bars"></i>
             </button>
+
+            <!-- Mobile menu dropdown - separate element -->
+            <div id="mobileMenu" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: linear-gradient(135deg, rgba(0,0,0,0.98), rgba(20,20,20,0.95)); z-index: 10000; padding: 0; border-top: 2px solid rgba(251,191,36,0.3); backdrop-filter: blur(15px); box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05); max-height: 0; overflow: hidden; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateY(-15px) scale(0.95); border-radius: 0 0 16px 16px;">
+                <div style="padding: 25px 20px;">
+                    <a href="#experience" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; margin-bottom: 4px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Experience</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                    <a href="#education" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; margin-bottom: 4px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Education</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                    <a href="#projects" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; margin-bottom: 4px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Projects</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                    <a href="#responsibilities" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; margin-bottom: 4px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Responsibilities</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                    <a href="#certification" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; margin-bottom: 4px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Certification and Training</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                    <a href="#partnership" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; margin-bottom: 4px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Partnership</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                    <a href="#scientific" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; margin-bottom: 4px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Publication and Production</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                    <a href="#media" onclick="closeMobileMenu()" style="display: block; color: #fbbf24; padding: 16px 20px; text-decoration: none; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); opacity: 0; transform: translateX(-30px) translateY(10px); border-radius: 8px; position: relative; overflow: hidden;">
+                        <span style="position: relative; z-index: 2;">Media</span>
+                        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(251,191,36,0.1), transparent); transition: left 0.6s ease;"></div>
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -5281,6 +5322,120 @@
     </div>
 
     <script>
+        // Advanced mobile menu toggle function
+        let isMenuOpen = false;
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navToggle = document.getElementById('navToggle');
+
+            if (mobileMenu && navToggle) {
+                const icon = navToggle.querySelector('i');
+                const menuLinks = mobileMenu.querySelectorAll('a');
+
+                if (!isMenuOpen) {
+                    openMobileMenu(mobileMenu, icon, menuLinks);
+                } else {
+                    closeMobileMenu();
+                }
+            }
+        }
+
+        function openMobileMenu(mobileMenu, icon, menuLinks) {
+            isMenuOpen = true;
+
+            // Open menu with advanced animations
+            mobileMenu.style.display = 'block';
+
+            // Trigger reflow
+            mobileMenu.offsetHeight;
+
+            // Main menu animation
+            mobileMenu.style.maxHeight = '600px';
+            mobileMenu.style.opacity = '1';
+            mobileMenu.style.transform = 'translateY(0) scale(1)';
+            icon.className = 'fas fa-times';
+
+            // Advanced staggered animation for menu items
+            menuLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateX(0) translateY(0)';
+
+                    // Add hover effect setup
+                    link.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateX(8px) translateY(0)';
+                        this.style.background = 'rgba(251,191,36,0.1)';
+                        this.style.borderLeft = '4px solid #fbbf24';
+                        this.style.paddingLeft = '16px';
+
+                        // Shimmer effect
+                        const shimmer = this.querySelector('div');
+                        if (shimmer) {
+                            shimmer.style.left = '100%';
+                        }
+                    });
+
+                    link.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateX(0) translateY(0)';
+                        this.style.background = 'transparent';
+                        this.style.borderLeft = 'none';
+                        this.style.paddingLeft = '20px';
+
+                        // Reset shimmer
+                        const shimmer = this.querySelector('div');
+                        if (shimmer) {
+                            shimmer.style.left = '-100%';
+                        }
+                    });
+                }, index * 80 + 200);
+            });
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navToggle = document.getElementById('navToggle');
+
+            if (mobileMenu && navToggle && isMenuOpen) {
+                isMenuOpen = false;
+                const icon = navToggle.querySelector('i');
+                const menuLinks = mobileMenu.querySelectorAll('a');
+
+                // Reverse animation for menu items
+                menuLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.opacity = '0';
+                        link.style.transform = 'translateX(-30px) translateY(10px)';
+                    }, index * 40);
+                });
+
+                // Close menu with delay
+                setTimeout(() => {
+                    mobileMenu.style.maxHeight = '0px';
+                    mobileMenu.style.opacity = '0';
+                    mobileMenu.style.transform = 'translateY(-15px) scale(0.95)';
+                    icon.className = 'fas fa-bars';
+
+                    // Hide menu after animation
+                    setTimeout(() => {
+                        mobileMenu.style.display = 'none';
+                    }, 600);
+                }, 200);
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navToggle = document.getElementById('navToggle');
+
+            if (isMenuOpen && mobileMenu && navToggle) {
+                if (!mobileMenu.contains(event.target) && !navToggle.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            }
+        });
+
         // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navToggle = document.getElementById('navToggle');
@@ -5321,15 +5476,24 @@
             });
 
             // Mobile menu toggle
-            navToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                const icon = navToggle.querySelector('i');
-                if (navLinks.classList.contains('active')) {
-                    icon.className = 'fas fa-times';
-                } else {
-                    icon.className = 'fas fa-bars';
-                }
-            });
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Menu toggle clicked'); // Debug log
+                    navLinks.classList.toggle('active');
+                    const icon = navToggle.querySelector('i');
+                    if (navLinks.classList.contains('active')) {
+                        icon.className = 'fas fa-times';
+                        console.log('Menu opened'); // Debug log
+                    } else {
+                        icon.className = 'fas fa-bars';
+                        console.log('Menu closed'); // Debug log
+                    }
+                });
+            } else {
+                console.error('Navigation elements not found:', { navToggle, navLinks });
+            }
 
             // Enhanced smooth scrolling for navigation links
             const links = document.querySelectorAll('.nav-links a');
