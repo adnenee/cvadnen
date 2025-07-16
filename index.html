@@ -63,6 +63,17 @@
             position: relative;
         }
 
+        /* Force single column layout for problematic range */
+        @media (max-width: 652px) {
+            .cv-container {
+                display: block !important;
+                grid-template-columns: none !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
+
         .sidebar {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #404040 100%);
             color: white;
@@ -1134,64 +1145,243 @@
             margin-bottom: 30px;
         }
 
-        /* Responsive stats grid for larger screens */
-        @media (min-width: 361px) and (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px;
-                margin-bottom: 25px;
+        /* Critical responsive fixes for 360px-652px range */
+        @media (max-width: 652px) {
+            .cv-container {
+                display: block !important;
+                grid-template-columns: none !important;
+                gap: 0 !important;
+                margin: 0 !important;
+                min-height: auto !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
-            .stat-item, .stat-card {
-                padding: 14px 10px;
-                text-align: center;
-            }
-            .stat-number {
-                font-size: 22px;
-                margin-bottom: 4px;
-            }
-            .stat-label {
-                font-size: 11px;
-                line-height: 1.2;
-            }
-        }
 
-        @media (min-width: 481px) and (max-width: 640px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 12px;
-                margin-bottom: 25px;
+            .sidebar {
+                padding: 15px 10px !important;
+                display: block !important;
+                width: 100% !important;
+                min-height: auto !important;
+                overflow: visible !important;
+                position: relative !important;
+                float: none !important;
+                clear: both !important;
+                box-sizing: border-box !important;
             }
-            .stat-item, .stat-card {
-                padding: 16px 12px;
-                text-align: center;
-            }
-            .stat-number {
-                font-size: 24px;
-                margin-bottom: 5px;
-            }
-            .stat-label {
-                font-size: 12px;
-                line-height: 1.2;
-            }
-        }
 
-        @media (min-width: 641px) and (max-width: 768px) {
+            .main-content {
+                padding: 15px 10px !important;
+                display: block !important;
+                width: 100% !important;
+                position: relative !important;
+                float: none !important;
+                clear: both !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Ensure all elements are properly contained */
+            * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+
+            .stat-card {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .profile-img {
+                width: 120px !important;
+                height: 140px !important;
+                margin: 0 auto 15px !important;
+            }
+
+            .name {
+                font-size: 18px !important;
+                line-height: 1.1 !important;
+                margin-bottom: 10px !important;
+                padding: 0 5px !important;
+            }
+
+            .title, .subtitle {
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .section {
+                margin-bottom: 20px !important;
+            }
+
+            .section-title {
+                font-size: 16px !important;
+                margin-bottom: 12px !important;
+                padding: 8px 10px !important;
+            }
+
+            .section-title i {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 14px !important;
+                margin-right: 8px !important;
+                padding: 8px !important;
+            }
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 15px;
-                margin-bottom: 30px;
+                gap: 8px !important;
+                margin-bottom: 15px !important;
             }
+
             .stat-item, .stat-card {
-                padding: 18px 14px;
-                text-align: center;
+                padding: 10px 5px !important;
+                text-align: center !important;
+                border-radius: 8px !important;
             }
+
             .stat-number {
-                font-size: 26px;
-                margin-bottom: 6px;
+                font-size: 18px !important;
+                margin-bottom: 3px !important;
             }
+
             .stat-label {
-                font-size: 13px;
-                line-height: 1.3;
+                font-size: 10px !important;
+                line-height: 1.1 !important;
+            }
+
+            .contact-item, .contact-link {
+                padding: 8px 10px !important;
+                margin-bottom: 8px !important;
+                font-size: 12px !important;
+            }
+
+            .contact-icon {
+                width: 25px !important;
+                height: 25px !important;
+                font-size: 11px !important;
+                margin-right: 10px !important;
+            }
+
+            .skill-item {
+                padding: 8px 10px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .skill-name {
+                font-size: 12px !important;
+            }
+
+            .skill-percentage {
+                font-size: 11px !important;
+            }
+
+            .language-item {
+                padding: 6px 10px !important;
+                margin-bottom: 8px !important;
+                font-size: 12px !important;
+            }
+
+            .experience-item, .education-item {
+                padding: 15px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .job-title {
+                font-size: 16px !important;
+                margin-bottom: 5px !important;
+            }
+
+            .company {
+                font-size: 14px !important;
+                margin-bottom: 5px !important;
+            }
+
+            .date-location {
+                font-size: 12px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .description {
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+            }
+
+            .video-item {
+                margin-bottom: 15px !important;
+            }
+
+            .video-header {
+                padding: 10px !important;
+            }
+
+            .video-title {
+                font-size: 14px !important;
+            }
+
+            .video-description {
+                font-size: 11px !important;
+            }
+
+            .moving-text-banner {
+                height: 35px !important;
+            }
+
+            .moving-text-content {
+                font-size: 11px !important;
+            }
+
+            .social-media-buttons {
+                bottom: 45px !important;
+                right: 10px !important;
+            }
+
+            .social-button {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 16px !important;
+            }
+
+            /* Prevent any grid overlapping */
+            .cv-wrapper {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow-x: hidden !important;
+            }
+
+            /* Ensure proper text wrapping */
+            .name, .title, .subtitle {
+                white-space: normal !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+            }
+
+            /* Fix any potential floating issues */
+            .profile-img.floating {
+                display: none !important;
+            }
+
+            /* Ensure sections don't overlap */
+            .section {
+                clear: both !important;
+                overflow: hidden !important;
+            }
+
+            /* Fix video containers */
+            .video-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
+            }
+
+            .video-container video {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
             }
         }
 
@@ -1215,6 +1405,7 @@
             margin-bottom: 8px;
             background: linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -1513,7 +1704,7 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 768px) and (min-width: 653px) {
             body {
                 padding: 5px;
                 font-size: 14px;
