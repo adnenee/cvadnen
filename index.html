@@ -478,7 +478,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 24px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             text-align: center;
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -488,7 +488,7 @@
             text-overflow: ellipsis;
             width: 100%;
             max-width: 100%;
-            padding: 0 5px;
+            padding: 0 10px;
             box-sizing: border-box;
         }
 
@@ -966,11 +966,233 @@
             border-radius: 20px;
         }
 
+        /* Advanced Video Styles */
+        .video-item {
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border-radius: 16px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-item:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            border-color: rgba(76, 175, 80, 0.3);
+        }
+
+        .video-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4CAF50, #81C784, #4CAF50);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-item:hover::before {
+            opacity: 1;
+        }
+
+        .video-header {
+            padding: 20px 20px 15px 20px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .video-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.5), transparent);
+        }
+
+        .video-title {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-title::before {
+            content: '📺';
+            font-size: 20px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .video-description {
+            color: #4CAF50;
+            font-size: 14px;
+            margin: 8px 0 0 0;
+            font-style: italic;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-container.compact {
+            max-height: 340px;
+        }
+
+        .video-container.compact video {
+            height: 290px;
+            object-fit: cover;
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(76, 175, 80, 0.1), transparent);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-container:hover::before {
+            opacity: 1;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .video-container:hover video {
+            transform: scale(1.02);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+        }
+
+        .video-stats {
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .video-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-stat i {
+            color: #4CAF50;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             margin-bottom: 30px;
+        }
+
+        /* Responsive stats grid for larger screens */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px;
+                margin-bottom: 25px;
+            }
+            .stat-item, .stat-card {
+                padding: 14px 10px;
+                text-align: center;
+            }
+            .stat-number {
+                font-size: 22px;
+                margin-bottom: 4px;
+            }
+            .stat-label {
+                font-size: 11px;
+                line-height: 1.2;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                margin-bottom: 25px;
+            }
+            .stat-item, .stat-card {
+                padding: 16px 12px;
+                text-align: center;
+            }
+            .stat-number {
+                font-size: 24px;
+                margin-bottom: 5px;
+            }
+            .stat-label {
+                font-size: 12px;
+                line-height: 1.2;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+            .stat-item, .stat-card {
+                padding: 18px 14px;
+                text-align: center;
+            }
+            .stat-number {
+                font-size: 26px;
+                margin-bottom: 6px;
+            }
+            .stat-label {
+                font-size: 13px;
+                line-height: 1.3;
+            }
         }
 
         .stat-card {
@@ -1079,8 +1301,13 @@
         }
 
         .social-button.email {
-            background: linear-gradient(135deg, #ea4335, #ff6b6b);
-            box-shadow: 0 4px 15px rgba(234, 67, 53, 0.4);
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            border: 2px solid #ea4335;
+        }
+
+        .social-button.email i {
+            color: #ea4335;
         }
 
         .social-button.facebook:hover {
@@ -1096,8 +1323,24 @@
         }
 
         .social-button.email:hover {
-            background: linear-gradient(135deg, #d93025, #ea4335);
-            box-shadow: 0 6px 20px rgba(234, 67, 53, 0.6);
+            background: #f8f8f8;
+            box-shadow: 0 6px 20px rgba(234, 67, 53, 0.3);
+            transform: scale(1.15);
+            border-color: #d93025;
+        }
+
+        .social-button.email:hover i {
+            color: #d93025;
+        }
+
+        .social-button.researchgate {
+            background: linear-gradient(135deg, #00d0b7, #00a693);
+            box-shadow: 0 4px 15px rgba(0, 208, 183, 0.4);
+        }
+
+        .social-button.researchgate:hover {
+            background: linear-gradient(135deg, #00a693, #008a7a);
+            box-shadow: 0 6px 20px rgba(0, 208, 183, 0.6);
             transform: scale(1.15);
         }
 
@@ -1153,6 +1396,17 @@
         .fas.fa-envelope {
             color: #dc2626;
             filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
+        }
+
+        /* Email Icon Background */
+        .contact-icon.email-icon {
+            background: #ffffff !important;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+
+        .contact-icon.email-icon:hover {
+            background: #f8f8f8 !important;
+            border-color: rgba(220, 38, 38, 0.4);
         }
 
         .fas.fa-phone {
@@ -1286,8 +1540,9 @@
                 width: 100%;
             }
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px;
+                margin-bottom: 25px;
             }
             .stat-item {
                 padding: 15px 10px;
@@ -1347,6 +1602,31 @@
                 font-size: 11px;
                 padding: 2px 6px;
                 border-radius: 4px;
+            }
+            .video-item {
+                margin-bottom: 20px;
+            }
+            .video-header {
+                padding: 15px 15px 12px 15px;
+            }
+            .video-title {
+                font-size: 15px;
+            }
+            .video-title::before {
+                font-size: 16px;
+            }
+            .video-description {
+                font-size: 12px;
+            }
+            .video-stats {
+                padding: 12px 15px;
+                font-size: 11px;
+            }
+            .video-overlay {
+                top: 8px;
+                right: 8px;
+                padding: 4px 8px;
+                font-size: 11px;
             }
             .experience-item, .education-item {
                 margin-bottom: 20px;
@@ -1424,8 +1704,9 @@
                 width: 100%;
             }
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 6px;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px;
+                margin-bottom: 20px;
             }
             .stat-item, .stat-card {
                 padding: 10px 6px;
@@ -1490,6 +1771,31 @@
                 font-size: 10px;
                 padding: 2px 5px;
                 border-radius: 3px;
+            }
+            .video-item {
+                margin-bottom: 15px;
+            }
+            .video-header {
+                padding: 12px 12px 10px 12px;
+            }
+            .video-title {
+                font-size: 14px;
+            }
+            .video-title::before {
+                font-size: 14px;
+            }
+            .video-description {
+                font-size: 11px;
+            }
+            .video-stats {
+                padding: 10px 12px;
+                font-size: 10px;
+            }
+            .video-overlay {
+                top: 6px;
+                right: 6px;
+                padding: 3px 6px;
+                font-size: 10px;
             }
             .contact-icon {
                 width: 22px;
@@ -1580,9 +1886,9 @@
                 margin-bottom: 15px;
             }
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 4px;
-                margin: 10px 0;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 6px;
+                margin: 15px 0;
                 width: 100%;
                 max-width: 100%;
                 box-sizing: border-box;
@@ -1734,6 +2040,7 @@
             font-size: 25px !important;
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-left: -200px;
         }
 
         .nav-menu.scrolled .nav-logo {
@@ -2105,6 +2412,7 @@
 
             .nav-logo {
                 font-size: 16px !important;
+                margin-left: -20px !important;
             }
 
             .nav-links {
@@ -2156,6 +2464,7 @@
 
             .nav-logo {
                 font-size: 14px !important;
+                margin-left: -10px !important;
             }
 
             .nav-links {
@@ -2333,11 +2642,11 @@
             <div class="sidebar">
                 <div class="sidebar-content">
                     <div class="profile-section">
+                        <h1 class="name">Pr. Dr. Eng. CHERIF Adnane</h1>
                         <div class="profile-img">
                             <img src="profile-removebg-preview.png" alt="Prof. Dr. Eng. CHERIF Adnane" onerror="this.style.display='none'">
                             <div class="profile-fallback">CA</div>
                         </div>
-                        <h1 class="name">Pr. Dr. Eng. CHERIF Adnane</h1>
                         <p class="title">Professor & Research Director</p>
                         <p class="subtitle">Director of ATSSEE Research Laboratory</p>
                     </div>
@@ -2353,11 +2662,19 @@
                         </div>
                         <div class="stat-card">
                             <div class="stat-number">50+</div>
-                            <div class="stat-label">PhD Students</div>
+                            <div class="stat-label">Supervised PhD Students</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-number">15+</div>
-                            <div class="stat-label">Int'l Projects</div>
+                            <div class="stat-label">International Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">55</div>
+                            <div class="stat-label">Professional Masters STR</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">38</div>
+                            <div class="stat-label">Masters of Research</div>
                         </div>
                     </div>
 
@@ -2384,30 +2701,83 @@
                         </div>
                     </div>
 
-                    <div class="section" id="contact">
+                    <div class="section" id="videos">
                         <h2 class="section-title">
-                            <i class="fas fa-address-card"></i>
-                            Contact
+                            <i class="fas fa-video"></i>
+                            Media Appearances
                         </h2>
-                        <a href="mailto:Adnane.cherif@fst.utm.tn" class="contact-item contact-link">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <span>Adnane.cherif@fst.utm.tn</span>
-                        </a>
-                        <a href="mailto:Adnen2fr@yahoo.fr" class="contact-item contact-link">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <span>Adnen2fr@yahoo.fr</span>
-                        </a>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <span>+216 98 200809</span>
+                        <div class="video-item">
+                            <div class="video-header">
+                                <h3 class="video-title">Radio Jeunes Tunisie</h3>
+                                <p class="video-description">Professional Interview & Discussion</p>
+                            </div>
+                            <div class="video-container">
+                                <div class="video-overlay">HD</div>
+                                <video controls preload="metadata">
+                                    <source src="video1.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="video-stats">
+                                <div class="video-stat">
+                                    <i class="fas fa-radio"></i>
+                                    <span>Radio Interview</span>
+                                </div>
+                                <div class="video-stat">
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <span>Tunis, Tunisia</span>
+                        <div class="video-item">
+                            <div class="video-header">
+                                <h3 class="video-title">Télévision tunisienne</h3>
+                                <p class="video-description">National Television Appearance</p>
+                            </div>
+                            <div class="video-container">
+                                <div class="video-overlay">HD</div>
+                                <video controls preload="metadata">
+                                    <source src="video2.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="video-stats">
+                                <div class="video-stat">
+                                    <i class="fas fa-tv"></i>
+                                    <span>TV Interview</span>
+                                </div>
+                                <div class="video-stat">
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-birthday-cake"></i></div>
-                            <span>Born: 10/1/1963</span>
+                    </div>
+
+                    <div class="section" id="laboratory-presentation">
+                        <h2 class="section-title">
+                            <i class="fas fa-flask"></i>
+                            Laboratory Presentation
+                        </h2>
+                        <div class="videos-grid">
+                        <div class="video-item">
+                            
+                            <div class="video-container">
+                                <div class="video-overlay">4K</div>
+                                <video controls preload="metadata">
+                                    <source src="atesse.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="video-stats">
+                                <div class="video-stat">
+                                    <i class="fas fa-flask"></i>
+                                    <span>Lab Demo</span>
+                                </div>
+                                <div class="video-stat">
+                                    <i class="fas fa-microscope"></i>
+                                    <span>Research</span>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
 
@@ -2471,6 +2841,35 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="section" id="contact">
+                        <h2 class="section-title">
+                            <i class="fas fa-address-card"></i>
+                            Contact
+                        </h2>
+                        <a href="mailto:Adnane.cherif@fst.utm.tn" class="contact-item contact-link">
+                            <div class="contact-icon email-icon"><i class="fas fa-envelope"></i></div>
+                            <span>Adnane.cherif@fst.utm.tn</span>
+                        </a>
+                        <a href="mailto:Adnen2fr@yahoo.fr" class="contact-item contact-link">
+                            <div class="contact-icon email-icon"><i class="fas fa-envelope"></i></div>
+                            <span>Adnen2fr@yahoo.fr</span>
+                        </a>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <span>+216 98 200809</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <span>Tunis, Tunisia</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-birthday-cake"></i></div>
+                            <span>Born: 10/1/1963</span>
+                        </div>
+                    </div>
+
+
 
                     <div class="section" id="languages">
                         <h2 class="section-title">
@@ -2541,10 +2940,9 @@
                         Research Area
                     </h2>
                     <p class="description">
-                        Distinguished Professor and Research Director with 35+ years of expertise in Electrical Engineering,
-                        Renewable Energy Systems, and E-Learning. Director of ATSSEE Research Laboratory and Master SRT Program
-                        Coordinator at FST. Expert in smart grid technology, renewable energy integration, and digital education
-                        platforms. Proven track record in international research collaboration and academic leadership with
+                        Distinguished Professor and Research Director with 35+ years of expertise in Electrical and communications Engineering, signal and data Processing,
+                        renewable Energy Systems,  and sustanaible development. Director of ATSSEE Research Laboratory and Coordinator of the Master SRT Program in FST.
+                        Expert in E-Learning and accreditation. Proven track record in international research collaboration and academic leadership with
                         extensive experience in project management, quality systems, and digital innovation.
                     </p>
                 </div>
@@ -2568,7 +2966,7 @@
                                 <li>Coordinator of Professional Master SRT program</li>
                                 <li>Coordinator of research projects (VRR,PAQ,P2ES,H2020,...)</li>
                                 <li>Supervised 50+ PhD students and published 130+ research papers</li>
-                                <li>Expert evaluator with ANRP, ATEA and NCAA </li>
+                                <li>Expert evaluator with ANRP, ATEA and NCAAA </li>
                             </ul>
                         </div>
                     </div>
@@ -2730,7 +3128,7 @@
                             2008 - 2011 | Tunis, Tunisia
                         </p>
                         <div class="description">
-                            Director of Department physical has there FST of 2008 has 2011
+                            Director of Department of physics from 2008 to 2011
                         </div>
                     </div>
 
@@ -2754,7 +3152,7 @@
                             2016 - 2017 | Tunisia
                         </p>
                         <div class="description">
-                            President of there National committee of Promotion of professors of the Ministry of high studies and research 2016 And 2017
+                            President of the National committee of Promotion of professors of the Ministry of high studies and research from 2016 to 2017
                         </div>
                     </div>
 
@@ -2790,7 +3188,7 @@
                             2008 - 2013 | Tunisia
                         </p>
                         <div class="description">
-                            Coordinator of virtual in line of the licenses STIC and Master Pro N2TR at the virtual university of Tunis from 2008 to 2013
+                            Coordinator of the online  licenses STIC and Master Pro N2TR at the virtual university of Tunis from 2008 to 2013
                         </div>
                     </div>
 
@@ -2823,7 +3221,7 @@
                         <p class="company">DGET of MESRS</p>
                         <p class="date-location">
                             <i class="fas fa-calendar-alt"></i>
-                            Ongoing | Tunisia
+                            2018 | Tunisia
                         </p>
                         <div class="description">
                             Member of there commission sectoral national of the studies And programs of training of engineers with of there DGET of MESRS
@@ -2835,7 +3233,7 @@
                         <p class="company">National Agency of Research Promotion</p>
                         <p class="date-location">
                             <i class="fas fa-calendar-alt"></i>
-                            Ongoing | Tunisia
+                            2023 - 2025 | Tunisia
                         </p>
                         <div class="description">
                             Expert with the ANPR (national Agency of research promotion) for the evaluation of projects and Post-doc candidates
@@ -2847,7 +3245,7 @@
                         <p class="company">National Agency of Accreditation</p>
                         <p class="date-location">
                             <i class="fas fa-calendar-alt"></i>
-                            Ongoing | Tunisia
+                            2025 - now | Tunisia
                         </p>
                         
                     </div>
@@ -2857,7 +3255,7 @@
                         <p class="company">Various Institutions</p>
                         <p class="date-location">
                             <i class="fas fa-calendar-alt"></i>
-                            Ongoing | Tunisia
+                            2008 - 2013 | Tunisia
                         </p>
                         <div class="description">
                             Expert in E-Learning and Coordinator of teaching E-Learning in the virtual university from 2008 to 2013
@@ -2901,8 +3299,11 @@
                         <h3 class="job-title">ARICA Arab Project : Sustainable Development Research project with the Arab League</h3>
                         <p class="date-location">
                             <i class="fas fa-calendar-alt"></i>
-                            Ongoing
+                            2023-2025
                         </p>
+                        <div class="description">
+                            sustainable smart model for the management of water and energy resources in north africa.
+                        </div>
                     </div>
 
                     <div class="experience-item">
@@ -2912,7 +3313,7 @@
                             2019-2023
                         </p>
                         <div class="description">
-                            Coordinator of project for STEG network migration towards smart grid technology.
+                            Coordinator of the project : electrical network migration towards smart grid technology.
                             Partners: ATSSEE, FST, Tunisie Telecom, STEG, MESRS.
                         </div>
                     </div>
@@ -2977,7 +3378,7 @@
                             Ongoing | International
                         </p>
                         <div class="description">
-                            Participation in international committees of program Evaluation & Accreditation (NCAAA, ATEA, ...)
+                            member in international committees of program Evaluation & Accreditation (NCAAA, ATEA, ...)
                         </div>
                     </div>
 
@@ -2986,10 +3387,10 @@
                         <p class="company">Faculty of Sciences of Tunis</p>
                         <p class="date-location">
                             <i class="fas fa-calendar-alt"></i>
-                            2023-2024 | Tunis, Tunisia
+                            2024-2025 | Tunis, Tunisia
                         </p>
                         <div class="description">
-                            Participating member of the FST committee for the accreditation for master's and engineering training of the cluster of computer science, Electronic and Communication Engineering 2023-2024
+                            Participating member of the FST committee for the accreditation for master's and engineering training of the cluster of computer science, Electronic and Communication Engineering 2024-2025
                         </div>
                     </div>
 
@@ -2998,36 +3399,16 @@
                         <p class="company">National Agency for Research Promotion</p>
                         <p class="date-location">
                             <i class="fas fa-calendar-alt"></i>
-                            Ongoing | Tunisia
+                            2024-2025 | Tunisia
                         </p>
                         <div class="description">
-                            Expert with ANPR (National Agency for the Promotion of Research) for the evaluation of research projects and post-doc, ARESSE green energy project
+                            Expert with ANPR (National Agency for the Promotion of Research) for the evaluation of research projects mobidoc and post-doc, ARESSE green energy project
                         </div>
                     </div>
 
-                    <div class="experience-item">
-                        <h3 class="job-title">MESRS Ministry Project Evaluator</h3>
-                        <p class="company">DGRS and DGVR of MESRS Ministry</p>
-                        <p class="date-location">
-                            <i class="fas fa-calendar-alt"></i>
-                            Ongoing | Tunisia
-                        </p>
-                        <div class="description">
-                            Designed by the DGRS and the DGVR of the MESRS Ministry for the evaluation of VRR, PIEC, etc. research projects
-                        </div>
-                    </div>
+        
 
-                    <div class="experience-item">
-                        <h3 class="job-title">National Sectoral Commission Member</h3>
-                        <p class="company">DGET of MESRS</p>
-                        <p class="date-location">
-                            <i class="fas fa-calendar-alt"></i>
-                            Ongoing | Tunisia
-                        </p>
-                        <div class="description">
-                            Member of there commission sectoral national of the studies And programs of training of engineers with of there DGET of MESRS
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="section" id="training">
@@ -3043,7 +3424,7 @@
                                 <li>ISO 9001 and ISO 12001 Quality Management System (2022)</li>
                                 <li>Embedded LINUX Certification Training (2021)</li>
                                 <li>E-Learning Expert Certification</li>
-                                <li>Research Project Evaluation Expert (ANPR, MESRS)</li>
+                                
                                 <li>Machine Learning NVIDEA (2025)</li>
                             </ul>
                         </div>
@@ -3143,19 +3524,16 @@
                                 <tbody>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2017-2021</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">ECOPARC Park technological of Borj cedria</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">ECOPARC technological Park of energy of Borj cedria</td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2016-2019</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Association "AFA »</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Medical Association AFA </td>
                                     </tr>
-                                    <tr>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">2017-2021</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Centre of DehreHeys Anddit is Technologies 4</td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2017</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">L'integrié CRIEn STEG international</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);"> STEG international</td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2016-2020</td>
@@ -3167,11 +3545,11 @@
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2017-2021</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Fac of the science from Oujda University Med first - Morocco</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Fac of the science of Oujda University Med 1 - Morocco</td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2017- 2019</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">AUF (Association University of French-speaking countries)</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">AUF </td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2018-2023 renewal</td>
@@ -3179,11 +3557,11 @@
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2021-2026</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">CETIME</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">CETIME company</td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2022-2025</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">ACTIA</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">ACTIA company</td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2022-2026</td>
@@ -3191,7 +3569,7 @@
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">2023-2025</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">ANPR : Agency National of Promotion of there Research</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">ANPR : Agency National of Promotion of Research</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -3221,8 +3599,8 @@
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">Electric Power Systems and Microgrids</td>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">Pr Guerrero J.M</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Faculty of Engineering and Science de Aalborg</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Aalborg Danemark</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Faculty of Engineering and Science de Alborg</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Alborg Danemark</td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">SAMOVA CNRS-UMR5505</td>
@@ -3238,13 +3616,13 @@
                                     </tr>
                                     <tr>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">POLARIS IETR-CNRS</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Pr. M.RIC Stéphane</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Pr. MERIC Stéphane</td>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">INSA-Rennes</td>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">Université de Rennes</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">IMT Atlantique labo ITI</td>
-                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Prof. BASSELS</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">ESTIB Télécom Bretagne, Brest</td>
+                                        <td style="padding: 10px; border: 1px solid var(--border-color);">Prof. BASSEL Solaiman</td>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">ESTIB Télécom Bretagne</td>
                                         <td style="padding: 10px; border: 1px solid var(--border-color);">Université de Nantes</td>
                                     </tr>
@@ -3787,11 +4165,11 @@
                                     <li style="margin-bottom: 12px;">
                                         <strong>TV Reporting:</strong> Broadcast on national TV <span style="color: #dc2626; font-weight: 600;">Watania 1</span> on 8/3/2023 at 8 p.m.
                                         <div style="margin-top: 8px; padding: 10px; background: rgba(220, 38, 38, 0.1); border-radius: 6px; border-left: 3px solid #dc2626;">
-                                            <a href="https://drive.google.com/file/d/1-pFt_zTlj9SnDW4c5rFl3kMaPJrcyH/view"
+                                            <a href="https://drive.google.com/file/d/1-rpEt_zTfI9SnDW4c5rElj3kMqPJrcyH/view"
                                                target="_blank"
                                                style="color: #0066cc; text-decoration: none; font-size: 14px; word-break: break-all;">
                                                 <i class="fas fa-video" style="margin-right: 8px;"></i>
-                                                Link of there video: https://drive.google.com/file/d/1-pFt_zTlj9SnDW4c5rFl3kMaPJrcyH/view
+                                                https://drive.google.com/file/d/1-rpEt_zTfI9SnDW4c5rElj3kMqPJrcyH/view
                                             </a>
                                         </div>
                                     </li>
@@ -4261,6 +4639,30 @@
                                     </div>
                                 </div>
 
+                                <div class="video-item">
+                                    <div class="video-header">
+                                        <h3 class="video-title">Hydrogen Car Demonstration</h3>
+                                        <p class="video-description">Green Hydrogen Vehicle in Action</p>
+                                    </div>
+                                    <div class="video-container compact">
+                                        <div class="video-overlay">4K</div>
+                                        <video controls preload="metadata">
+                                            <source src="hydrogene_car.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="video-stats">
+                                        <div class="video-stat">
+                                            <i class="fas fa-car"></i>
+                                            <span>Vehicle Demo</span>
+                                        </div>
+                                        <div class="video-stat">
+                                            <i class="fas fa-leaf"></i>
+                                            <span>Clean Energy</span>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="image-container">
                                     <img src="ElectricproductionviaHydrogenFuellcell.png" alt="Electric production via Hydrogen Fuel cell system" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <div class="image-fallback" style="display: none;">
@@ -4306,6 +4708,9 @@
         </a>
         <a href="https://tn.linkedin.com/in/adnane-cherif-943026209" target="_blank" class="social-button linkedin" title="LinkedIn Profile">
             <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://www.researchgate.net/profile/Chrif-Adnen" target="_blank" class="social-button researchgate" title="ResearchGate Profile">
+            <i class="fab fa-researchgate"></i>
         </a>
         <a href="mailto:Adnen2fr@yahoo.fr" class="social-button email" title="Send Email">
             <i class="fas fa-envelope"></i>
