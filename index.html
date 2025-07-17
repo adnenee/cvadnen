@@ -319,11 +319,13 @@
             letter-spacing: 0.5px;
             font-family: 'Inter', sans-serif;
             display: flex;
+            width: max-content;
+            min-width: 100%;
         }
 
         @keyframes scroll-text {
             0% {
-                transform: translateX(0);
+                transform: translateX(0%);
             }
             100% {
                 transform: translateX(-50%);
@@ -355,6 +357,84 @@
 
             .moving-text-content {
                 font-size: 13px;
+            }
+        }
+
+        /* Extra small screens - prevent text cutoff */
+        @media (max-width: 653px) {
+            .moving-text-banner {
+                height: 36px !important;
+                overflow: hidden !important;
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100vw !important;
+                z-index: 1000 !important;
+            }
+
+            .moving-text-content {
+                font-size: 11px !important;
+                line-height: 36px !important;
+                height: 36px !important;
+                display: flex !important;
+                align-items: center !important;
+                white-space: nowrap !important;
+                animation: scroll-text 40s linear infinite !important;
+                width: max-content !important;
+            }
+
+            .moving-text-content .separator {
+                margin: 0 12px !important;
+                font-size: 12px !important;
+            }
+
+            .moving-text-content .highlight {
+                color: #ffd700 !important;
+                font-weight: 600 !important;
+                text-shadow: none !important;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .moving-text-banner {
+                height: 36px;
+            }
+
+            .moving-text-content {
+                font-size: 11px;
+                line-height: 36px;
+                height: 36px;
+                animation: scroll-text 40s linear infinite;
+                width: max-content;
+                min-width: 200%;
+            }
+
+            .moving-text-content .separator {
+                margin: 0 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Ultra small screens */
+        @media (max-width: 360px) {
+            .moving-text-banner {
+                height: 34px;
+            }
+
+            .moving-text-content {
+                font-size: 10px;
+                line-height: 34px;
+                height: 34px;
+                animation: scroll-text 35s linear infinite;
+                width: max-content;
+                min-width: 200%;
+            }
+
+            .moving-text-content .separator {
+                margin: 0 10px;
+                font-size: 11px;
             }
         }
 
@@ -1099,6 +1179,55 @@
             transition: transform 0.3s ease;
         }
 
+        /* Ensure video controls are always visible */
+        .video-container video::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .video-container video::-webkit-media-controls-panel {
+            display: flex !important;
+        }
+
+        /* Custom play button overlay for better visibility */
+        .video-container .custom-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .video-container .custom-play-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translate(-50%, -50%) scale(1.1);
+            border-color: #fbbf24;
+        }
+
+        .video-container .custom-play-button i {
+            color: white;
+            font-size: 32px;
+            margin-left: 4px;
+        }
+
+        .video-container .custom-play-button:hover i {
+            color: #fbbf24;
+        }
+
+        /* Hide custom play button when video is playing */
+        .video-container.playing .custom-play-button {
+            display: none;
+        }
+
         .video-container:hover video {
             transform: scale(1.02);
         }
@@ -1327,11 +1456,23 @@
             }
 
             .moving-text-banner {
-                height: 35px !important;
+                height: 34px !important;
+                overflow: hidden !important;
+                width: 100vw !important;
+                left: 0 !important;
+                right: 0 !important;
             }
 
             .moving-text-content {
-                font-size: 11px !important;
+                font-size: 10px !important;
+                line-height: 34px !important;
+                height: 34px !important;
+                animation: scroll-text 35s linear infinite !important;
+            }
+
+            .moving-text-content .separator {
+                margin: 0 8px !important;
+                font-size: 10px !important;
             }
 
             .social-media-buttons {
@@ -2711,7 +2852,7 @@
                 white-space: nowrap;
             }
 
-            /* Hide original nav-links on mobile - we use the new mobileMenu instead */
+            /* Hide original nav-links on mobile */
             .nav-links {
                 display: none !important;
             }
@@ -2736,7 +2877,22 @@
                 }
             }
 
+            .nav-links a {
+                padding: 12px 16px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 14px;
+                text-align: center;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
 
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2758,7 +2914,14 @@
                 gap: 10px;
             }
 
+            .nav-links {
+                padding: 10px;
+            }
 
+            .nav-links a {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
 
             .nav-toggle {
                 font-size: 14px;
@@ -4968,7 +5131,10 @@
                                     </div>
                                     <div class="video-container compact">
                                         <div class="video-overlay">4K</div>
-                                        <video controls preload="metadata">
+                                        <div class="custom-play-button" onclick="playVideo(this)">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                        <video controls preload="metadata" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzMzMzMyIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SHlkcm9nZW4gQ2FyPC90ZXh0Pjwvc3ZnPg==">
                                             <source src="hydrogene_car.mp4" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
@@ -5286,38 +5452,34 @@
     <!-- Fixed Moving Text Banner -->
     <div class="moving-text-banner">
         <div class="moving-text-content">
-            <div style="display: flex; white-space: nowrap;">
-                <span class="highlight">Distinguished Professor and Research Director</span>
-                <span class="separator">•</span>
-                <span>35+ years of expertise in Electrical Engineering, Renewable Energy Systems, and E-Learning</span>
-                <span class="separator">•</span>
-                <span class="highlight">Director of ATSSEE Research Laboratory</span>
-                <span class="separator">•</span>
-                <span>Master SRT Program Coordinator at FST</span>
-                <span class="separator">•</span>
-                <span>Expert in smart grid technology, renewable energy integration, and digital education platforms</span>
-                <span class="separator">•</span>
-                <span class="highlight">Proven track record in international research collaboration</span>
-                <span class="separator">•</span>
-                <span>Academic leadership with extensive experience in project management, quality systems, and digital innovation</span>
-                <span class="separator">•</span>
-            </div>
-            <div style="display: flex; white-space: nowrap;">
-                <span class="highlight">Distinguished Professor and Research Director</span>
-                <span class="separator">•</span>
-                <span>35+ years of expertise in Electrical Engineering, Renewable Energy Systems, and E-Learning</span>
-                <span class="separator">•</span>
-                <span class="highlight">Director of ATSSEE Research Laboratory</span>
-                <span class="separator">•</span>
-                <span>Master SRT Program Coordinator at FST</span>
-                <span class="separator">•</span>
-                <span>Expert in smart grid technology, renewable energy integration, and digital education platforms</span>
-                <span class="separator">•</span>
-                <span class="highlight">Proven track record in international research collaboration</span>
-                <span class="separator">•</span>
-                <span>Academic leadership with extensive experience in project management, quality systems, and digital innovation</span>
-                <span class="separator">•</span>
-            </div>
+            <span class="highlight">Distinguished Professor and Research Director</span>
+            <span class="separator">•</span>
+            <span>35+ years of expertise in Electrical Engineering, Renewable Energy Systems, and E-Learning</span>
+            <span class="separator">•</span>
+            <span class="highlight">Director of ATSSEE Research Laboratory</span>
+            <span class="separator">•</span>
+            <span>Master SRT Program Coordinator at FST</span>
+            <span class="separator">•</span>
+            <span>Expert in smart grid technology, renewable energy integration, and digital education platforms</span>
+            <span class="separator">•</span>
+            <span class="highlight">Proven track record in international research collaboration</span>
+            <span class="separator">•</span>
+            <span>Academic leadership with extensive experience in project management, quality systems, and digital innovation</span>
+            <span class="separator">•</span>
+            <span class="highlight">Distinguished Professor and Research Director</span>
+            <span class="separator">•</span>
+            <span>35+ years of expertise in Electrical Engineering, Renewable Energy Systems, and E-Learning</span>
+            <span class="separator">•</span>
+            <span class="highlight">Director of ATSSEE Research Laboratory</span>
+            <span class="separator">•</span>
+            <span>Master SRT Program Coordinator at FST</span>
+            <span class="separator">•</span>
+            <span>Expert in smart grid technology, renewable energy integration, and digital education platforms</span>
+            <span class="separator">•</span>
+            <span class="highlight">Proven track record in international research collaboration</span>
+            <span class="separator">•</span>
+            <span>Academic leadership with extensive experience in project management, quality systems, and digital innovation</span>
+            <span class="separator">•</span>
         </div>
     </div>
 
@@ -5436,6 +5598,59 @@
             }
         });
 
+        // Video play functionality
+        function playVideo(playButton) {
+            const videoContainer = playButton.parentElement;
+            const video = videoContainer.querySelector('video');
+
+            if (video) {
+                // Hide the custom play button
+                videoContainer.classList.add('playing');
+
+                // Play the video
+                video.play().then(() => {
+                    console.log('Video started playing');
+                }).catch((error) => {
+                    console.error('Error playing video:', error);
+                    // Show play button again if there's an error
+                    videoContainer.classList.remove('playing');
+
+                    // Show error message
+                    const errorMsg = document.createElement('div');
+                    errorMsg.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(255, 0, 0, 0.8);
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 8px;
+                        font-size: 14px;
+                        z-index: 15;
+                    `;
+                    errorMsg.textContent = 'Video file not found or cannot be played';
+                    videoContainer.appendChild(errorMsg);
+
+                    // Remove error message after 3 seconds
+                    setTimeout(() => {
+                        if (errorMsg.parentElement) {
+                            errorMsg.parentElement.removeChild(errorMsg);
+                        }
+                    }, 3000);
+                });
+
+                // Show play button again when video ends or is paused
+                video.addEventListener('ended', () => {
+                    videoContainer.classList.remove('playing');
+                });
+
+                video.addEventListener('pause', () => {
+                    videoContainer.classList.remove('playing');
+                });
+            }
+        }
+
         // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navToggle = document.getElementById('navToggle');
@@ -5475,25 +5690,7 @@
                 lastScrollTop = scrollTop;
             });
 
-            // Mobile menu toggle
-            if (navToggle && navLinks) {
-                navToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('Menu toggle clicked'); // Debug log
-                    navLinks.classList.toggle('active');
-                    const icon = navToggle.querySelector('i');
-                    if (navLinks.classList.contains('active')) {
-                        icon.className = 'fas fa-times';
-                        console.log('Menu opened'); // Debug log
-                    } else {
-                        icon.className = 'fas fa-bars';
-                        console.log('Menu closed'); // Debug log
-                    }
-                });
-            } else {
-                console.error('Navigation elements not found:', { navToggle, navLinks });
-            }
+            // Mobile menu toggle - now handled by onclick in HTML
 
             // Enhanced smooth scrolling for navigation links
             const links = document.querySelectorAll('.nav-links a');
