@@ -1,0 +1,23 @@
+# ---- unrelated dev projects (huge) ----
+/react-portfolio/
+/cv_flutter/
+
+# ---- backups & working copies of index.html ----
+index.html.bak*
+index.bak*
+index.edited*
+*.bak
+*.bak-*
+
+# ---- local tooling / caches ----
+/.playwright-mcp/
+/.vscode/
+/.workbuddy-ai/
+/.i18n-work/
+/outputs/
+*.log
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+desktop.ini

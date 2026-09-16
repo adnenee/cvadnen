@@ -1,0 +1,250 @@
+/* Academic portfolio refinement. The original stylesheet and responsive grid
+   remain intact. Important rules intentionally override the legacy cascade. */
+:root {
+  --ref-paper: #f7f6f2;
+  --ref-card: #ffffff;
+  --ref-ink: #182c38;
+  --ref-muted: #566571;
+  --ref-rule: #dedfd9;
+  --ref-brass: #967339;
+  --ref-night: #182c38;
+  --ref-light: #f4f1e8;
+  --ref-soft: #b6c5cc;
+  --ref-serif: "Source Serif 4", Georgia, serif;
+  --ref-sans: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+body { background: var(--ref-paper) !important; padding-top: 64px !important; }
+.cv-wrapper, .main-content { background: var(--ref-paper) !important; }
+body .cv-wrapper .sidebar { background: var(--ref-night) !important; }
+body .profile-section::before, body .sidebar::before,
+body .floating-shapes, body .profile-img.floating { display: none !important; }
+
+/* A legible, compact masthead. Original anchor destinations are retained. */
+body .nav-menu, body .nav-menu.scrolled {
+  height: 64px !important; padding: 0 !important;
+  background: var(--ref-night) !important;
+  border-bottom: 1px solid #3c4d56 !important; box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+body .nav-menu.hidden { transform: none !important; }
+body .nav-container {
+  height: 64px !important; gap: 24px !important;
+  justify-content: space-between !important;
+}
+body .nav-logo {
+  font-family: var(--ref-serif); font-size: 22px !important;
+  font-weight: 500; letter-spacing: -.025em; text-transform: none;
+  color: var(--ref-light) !important;
+}
+body .nav-links { gap: 4px !important; }
+body .nav-links a {
+  font-family: var(--ref-sans); font-size: 12px !important;
+  letter-spacing: 0; text-transform: none; padding: 9px 10px;
+  color: #d3dde1 !important; border-radius: 2px;
+}
+body .nav-links a:hover, body .nav-links a.active {
+  color: #fff !important; background: #2b414e;
+}
+body #mobileMenu { background: var(--ref-night); }
+body #mobileMenu a { color: var(--ref-light) !important; }
+body .nav-toggle { margin-left: auto; }
+.scroll-indicator { background: transparent !important; }
+.scroll-progress { background: #bfa169 !important; }
+
+/* The name is visible immediately, no typewriter or white overlay. */
+body .sidebar .name {
+  font-family: var(--ref-serif); font-weight: 500;
+  font-size: 31px !important; line-height: 1.18 !important;
+  letter-spacing: -.03em; text-transform: none;
+  white-space: normal !important; color: var(--ref-light) !important;
+  -webkit-text-fill-color: var(--ref-light) !important;
+  background: none !important; text-shadow: none !important;
+  margin-bottom: 24px !important;
+}
+body .profile-img, body .profile-img:hover {
+  filter: none !important; transform: none !important;
+  animation: none !important; box-shadow: none !important;
+}
+body .profile-img::before, body .profile-img::after { display: none !important; }
+body .sidebar .title {
+  font-family: var(--ref-sans); color: var(--ref-light) !important;
+  font-weight: 600; font-size: 15px !important;
+}
+body .sidebar .subtitle { color: var(--ref-soft) !important; font-size: 12px !important; }
+
+/* Compact QR directory, not a competing hero image. */
+body .sidebar .qr-card {
+  display: grid; grid-template-columns: 106px minmax(0, 1fr);
+  column-gap: 16px; row-gap: 6px; align-items: center;
+  padding: 18px !important; text-align: left;
+  background: #213845 !important; border: 1px solid #425763 !important;
+  border-radius: 4px !important; box-shadow: none !important;
+}
+body .qr-card .qr-link { grid-column: 1; grid-row: 1 / 4; margin: 0; }
+body .qr-card .qr-image {
+  width: 106px !important; max-width: 100% !important; height: auto !important;
+  margin: 0 !important; padding: 5px !important; background: #fff;
+  border-radius: 2px !important; box-shadow: none !important;
+}
+body .qr-card .qr-label { grid-column: 2; margin: 0; font-size: 10px; color: #d4bb8c; }
+body .qr-card .qr-caption { grid-column: 2; margin: 0; font-size: 11px; line-height: 1.6; color: #d3dde1; }
+body .qr-card .qr-url { grid-column: 2; margin: 0; font-size: 10px; color: #d4bb8c !important; overflow-wrap: anywhere; }
+body .qr-label i { color: #d4bb8c !important; }
+
+/* Uniform metrics and restrained sidebar components. */
+body .sidebar .stat-card {
+  background: #213845 !important; border: 1px solid #425763 !important;
+  box-shadow: none !important; border-radius: 3px !important;
+  transform: none !important; padding: 18px 12px !important;
+}
+body .sidebar .stat-number {
+  font-family: var(--ref-serif); font-weight: 500; font-size: 32px !important;
+  color: var(--ref-light) !important; -webkit-text-fill-color: var(--ref-light);
+  background: none !important; line-height: 1.2;
+}
+body .sidebar .stat-label { font-size: 11px !important; color: #d3dde1; line-height: 1.6; }
+body .sidebar .section-title {
+  font-family: var(--ref-serif); font-size: 24px !important; font-weight: 500;
+  color: var(--ref-light) !important; letter-spacing: -.02em;
+}
+body .sidebar .section-title i, body .sidebar .contact-icon {
+  background: transparent !important; color: #d4bb8c !important;
+  border-color: transparent !important; box-shadow: none !important;
+}
+body .sidebar .contact-item a { color: #c1d6da !important; }
+body .sidebar .skill-bar { height: 3px !important; background: #425763 !important; }
+body .sidebar .skill-progress { background: #c4aa7d !important; box-shadow: none !important; }
+body .sidebar .video-item { background: #213845 !important; border-color: #425763 !important; }
+body .sidebar .video-title { color: var(--ref-light) !important; }
+body .sidebar .video-description, body .sidebar .video-stat { color: #c5d1d7 !important; }
+
+/* Editorial hierarchy instead of multicolored section banners. */
+body .cv-wrapper .main-content .section:nth-child(n) .section-title {
+  font-family: var(--ref-serif); font-size: 30px; line-height: 1.25;
+  font-weight: 500; letter-spacing: -.025em;
+  color: var(--ref-ink) !important; -webkit-text-fill-color: var(--ref-ink) !important;
+  background: none !important; border: 0 !important;
+  border-bottom: 1px solid var(--ref-rule) !important;
+  border-radius: 0 !important; box-shadow: none !important;
+  backdrop-filter: none !important; padding: 0 0 18px !important;
+  margin-bottom: 24px !important;
+}
+body .main-content .section-title i {
+  color: var(--ref-brass) !important; -webkit-text-fill-color: var(--ref-brass) !important;
+  font-size: 17px !important; background: transparent !important;
+  box-shadow: none !important; border: none !important;
+}
+body .cv-wrapper .main-content #summary .section-title {
+  font-size: clamp(34px, 3.3vw, 48px) !important; max-width: 700px !important;
+  border: none !important; padding: 0 !important; margin-bottom: 22px !important;
+}
+body #summary .section-title i { display: none; }
+.portfolio-eyebrow {
+  font-family: var(--ref-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ref-brass);
+  margin-bottom: 16px;
+}
+body #summary .description { font-size: 15px; line-height: 1.95; max-width: 76ch; }
+.portfolio-actions { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 24px; }
+.portfolio-actions a {
+  display: inline-flex; align-items: center; gap: 18px; font-size: 12px;
+  text-decoration: none; font-weight: 600; padding: 11px 0;
+  border-bottom: 1px solid #a7b1b3; color: var(--ref-ink);
+}
+.portfolio-actions a:hover { color: var(--ref-brass); border-color: var(--ref-brass); }
+.portfolio-actions span { font-size: 18px; font-weight: 400; }
+
+/* Existing cards and spacing remain; texture comes from rules and type. */
+body .main-content .experience-item, body .main-content .education-item {
+  background: var(--ref-card) !important; border: 1px solid var(--ref-rule) !important;
+  border-radius: 4px !important; box-shadow: none !important;
+  transform: none !important; transition: border-color 150ms ease !important;
+}
+body .main-content .experience-item:hover, body .main-content .education-item:hover { border-color: #a4b1b4 !important; }
+body .main-content .experience-item::before, body .main-content .education-item::before { background: var(--ref-brass) !important; }
+body .main-content .job-title {
+  font-family: var(--ref-serif); font-weight: 600; color: var(--ref-ink) !important;
+  letter-spacing: -.02em; font-size: 24px; line-height: 1.35;
+}
+body .main-content .company {
+  color: #375b66 !important; font-size: 12px; font-weight: 600;
+  text-transform: none; letter-spacing: 0; line-height: 1.75;
+}
+body .main-content .date-location { color: var(--ref-muted); font-size: 11px; }
+body .main-content .date-location i { color: var(--ref-brass) !important; }
+body .main-content .description { color: #43545e; }
+body .main-content .description li::before { color: var(--ref-brass) !important; }
+body .main-content .stat-card { background: #edf0ed !important; border-color: var(--ref-rule) !important; box-shadow: none !important; }
+body .main-content .stat-number { color: var(--ref-ink) !important; background: none !important; -webkit-text-fill-color: var(--ref-ink) !important; }
+
+/* Research tables and documentation share the same visual language. */
+body .main-content table { font-family: var(--ref-sans) !important; }
+body .main-content th { background: #e9eeea !important; color: var(--ref-ink) !important; }
+body .main-content td, body .main-content th { border-color: #dce1db !important; }
+body .main-content tr:nth-child(even) td { background: #f7f9f6; }
+body .main-content .annex-item {
+  background: #fff !important; border-color: var(--ref-rule) !important;
+  border-radius: 4px !important; box-shadow: none !important; transform: none !important;
+}
+body .annex-item::before { background: var(--ref-brass) !important; }
+body .annex-header { background: #eef1ed !important; border-color: var(--ref-rule) !important; }
+body .annex-number {
+  background: var(--ref-night) !important; color: var(--ref-light) !important;
+  box-shadow: none !important; border-radius: 3px !important; font-family: var(--ref-serif);
+}
+body .annex-title { font-family: var(--ref-serif); font-size: 22px; color: var(--ref-ink) !important; }
+body .annex-subtitle { color: var(--ref-muted) !important; font-style: normal; }
+body .annex-meta i { color: var(--ref-brass) !important; }
+body .image-container { border-color: var(--ref-rule) !important; border-radius: 3px !important; box-shadow: none !important; transform: none !important; }
+body .image-caption { background: #fff !important; color: var(--ref-ink) !important; }
+body .image-caption h4 { color: var(--ref-ink) !important; }
+body .highlight-item { background: #eef1ed !important; border-color: #dde3dd !important; color: #375b66 !important; border-radius: 3px !important; box-shadow: none !important; }
+body .highlight-item i { color: var(--ref-brass) !important; }
+body .video-overlay { background: var(--ref-night) !important; color: var(--ref-light) !important; box-shadow: none !important; }
+body .social-button { background: var(--ref-night) !important; border: 1px solid #53636b !important; box-shadow: none !important; animation: none !important; }
+body .social-button i { color: var(--ref-light) !important; }
+body .social-button:hover { background: #3a5360 !important; transform: none !important; }
+
+/* Fixed advertising-like ticker becomes a quiet, non-obscuring page footer. */
+body .moving-text-banner { position: static !important; background: var(--ref-night) !important; border-top: 1px solid #425763 !important; box-shadow: none !important; padding: 20px !important; }
+body .moving-text-content { animation: none !important; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; white-space: normal !important; }
+body .moving-text-content > span { font-size: 10px; letter-spacing: .04em; color: #c5d1d7 !important; }
+body .moving-text-content > span:nth-child(n+19) { display: none; }
+body .moving-text-content .separator { color: #82939a !important; }
+body .name, body .title, body .subtitle, body .section-title,
+body .stat-card, body .stat-number { animation: none !important; }
+:focus-visible { outline: 2px solid #aa874a !important; outline-offset: 4px; }
+.skip-link { position: fixed; top: -80px; left: 16px; z-index: 999999; padding: 10px 16px; background: #fff; color: #182c38; }
+.skip-link:focus { top: 8px; }
+
+@media (max-width: 1200px) {
+  body .nav-links { display: none !important; }
+  body .nav-toggle { display: flex !important; }
+}
+@media (max-width: 768px) {
+  body .nav-container { padding: 0 20px !important; }
+  body .nav-logo { font-size: 21px !important; }
+  body .sidebar .name { font-size: 29px !important; }
+  body .cv-wrapper .main-content .section:nth-child(n) .section-title { font-size: 25px !important; }
+  body .cv-wrapper .main-content #summary .section-title { font-size: 35px !important; }
+  body .main-content .job-title { font-size: 22px; }
+  body .sidebar .qr-card { max-width: 460px; margin-left: auto; margin-right: auto; }
+  body .social-media-buttons { position: static !important; flex-direction: row !important; justify-content: flex-start; margin-top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html, body { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media print {
+  body { padding-top: 0 !important; background: #fff !important; }
+  .nav-menu, .scroll-indicator, .moving-text-banner, .social-media-buttons,
+  .qr-card, .portfolio-actions, .skip-link, .video-container { display: none !important; }
+  body .cv-container { display: block !important; }
+  body .cv-wrapper .sidebar, body .main-content { background: #fff !important; padding: 20px !important; }
+  body .sidebar * { color: #182c38 !important; -webkit-text-fill-color: #182c38 !important; text-shadow: none !important; }
+  body .sidebar .name { color: #182c38 !important; -webkit-text-fill-color: #182c38 !important; }
+  body .sidebar .stat-card, body .sidebar .video-item { background: #f2f4f1 !important; border-color: #cdd5ce !important; }
+  .experience-item, .education-item, .image-container { break-inside: avoid; }
+  .section-title, .annex-header { break-after: avoid; }
+  body .cv-wrapper .main-content .section-title { box-shadow: none !important; }
+}

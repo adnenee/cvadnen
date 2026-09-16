@@ -1,0 +1,29 @@
+{
+  "_how_to_use": [
+    "1. This file currently holds the site's EXISTING values - applying it is a safe no-op.",
+    "2. Edit only the values you want to change. Delete the rest if you like.",
+    "3. Preview:  python theme.py apply ../index.html THEME-SPEC.json --dry",
+    "4. Apply:    python theme.py apply ../index.html THEME-SPEC.json",
+    "5. Add '--literals' to also rewrite raw hardcoded hex colours site-wide.",
+    "6. Commit to git BEFORE applying. A .bak file is written automatically."
+  ],
+  "_note": "Only 'tokens' are applied by default. 'literals' is opt-in because it rewrites raw hex everywhere - always preview with --dry and check visually.",
+
+  "tokens": {
+    "--primary-color": "#1a1a1a",
+    "--secondary-color": "#2d5a3d",
+    "--accent-color": "#2563eb",
+    "--text-primary": "#0f172a",
+    "--text-secondary": "#334155",
+    "--text-light": "#64748b",
+    "--bg-primary": "#ffffff",
+    "--bg-secondary": "#f8fafc",
+    "--bg-accent": "#f1f5f9",
+    "--border-color": "#e2e8f0",
+    "--gradient-primary": "linear-gradient(135deg, #166534 0%, #15803d 100%)",
+    "--gradient-secondary": "linear-gradient(135deg, #eab308 0%, #f59e0b 100%)",
+    "--gradient-accent": "linear-gradient(135deg, #475569 0%, #64748b 100%)"
+  },
+
+  "literals": {}
+}
