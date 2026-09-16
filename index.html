@@ -3536,21 +3536,6 @@
                         <p class="subtitle" data-i18n="lab_director">Director of ATSSEE Research Laboratory</p>
                     </div>
 
-                    <div class="qr-card">
-                        <div class="qr-label">
-                            <i class="fas fa-qrcode"></i>
-                            <span>Scan To Visit</span>
-                        </div>
-                        <a href="https://adnenee.github.io/cvadnen/" target="_blank" rel="noopener noreferrer"
-                            class="qr-link" aria-label="Open the online CV website">
-                            <img src="cvadnen-website-qr.png" alt="QR code linking to the online CV website"
-                                class="qr-image">
-                        </a>
-                        <p class="qr-caption">Scan this code to open the published online CV instantly.</p>
-                        <a href="https://adnenee.github.io/cvadnen/" target="_blank" rel="noopener noreferrer"
-                            class="qr-url">https://adnenee.github.io/cvadnen/</a>
-                    </div>
-
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-number">35+</div>
@@ -7147,6 +7132,31 @@ else { build(); }
   .social-topbar { display: none !important; }
   .nav-container { padding: 0 8px !important; gap: 8px !important; }
 }
+</style>
+
+<!-- QR code card - moved to the very bottom of the page -->
+<div class="qr-bottom">
+    <div class="qr-card">
+        <div class="qr-label">
+            <i class="fas fa-qrcode"></i>
+            <span>Scan To Visit</span>
+        </div>
+        <a href="https://adnenee.github.io/cvadnen/" target="_blank" rel="noopener noreferrer"
+            class="qr-link" aria-label="Open the online CV website">
+            <img src="cvadnen-website-qr.png" alt="QR code linking to the online CV website"
+                class="qr-image">
+        </a>
+        <p class="qr-caption">Scan this code to open the published online CV instantly.</p>
+        <a href="https://adnenee.github.io/cvadnen/" target="_blank" rel="noopener noreferrer"
+            class="qr-url">https://adnenee.github.io/cvadnen/</a>
+    </div>
+</div>
+
+<style id="cv-qr-bottom">
+/* QR card relocated to the very bottom of the page */
+.qr-bottom { display: flex; justify-content: center; padding: 46px 20px 64px; }
+.qr-bottom .qr-card { margin: 0; width: min(380px, 100%); }
+html[dir="rtl"] .qr-bottom { direction: rtl; }
 </style>
 </body>
 
