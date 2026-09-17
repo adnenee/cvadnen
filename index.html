@@ -7196,6 +7196,16 @@ html[dir="rtl"] .qr-bottom { direction: rtl; }
   border-top:1px solid rgba(78,163,217,.22) !important;
   box-shadow:0 -8px 22px rgba(0,0,0,.35) !important;
 }
+
+/* ---- mobile nav menu (the top nav, on small screens) ----
+   The original used rgba(10,10,10,.98) — pure near-black. Since
+   the user explicitly asked for the top nav to be marine, the
+   fullscreen mobile menu (same nav, just smaller viewports) gets
+   the same marine treatment. Background only; keeps the existing
+   hover, animation, and link styling intact.                   */
+#mobileMenu{
+  background:rgba(10,26,47,.98) !important;
+}
 </style>
 <style id="cv-enhancements">
 /* ============================================================
