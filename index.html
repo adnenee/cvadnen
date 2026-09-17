@@ -7291,6 +7291,19 @@ html[dir="rtl"] .qr-bottom { direction: rtl; }
   }
 }
 </style>
+<style id="cv-company-fix">
+/* ============================================================
+   DE-AI-SLOP: replace the Tailwind blue-600 (#2563eb = rgb(37,99,235))
+   "company name" colour on institution lines (UNIVERSITY OF TUNIS
+   MANAR, ENIT, etc.) with the same dark navy used by section
+   titles (#0a1a2f). This removes the bright-saturated AI-default
+   colour from 70 lines of body text. Buttons and other accent
+   surfaces still use --accent-color; this only overrides .company.
+   ============================================================ */
+.company{
+  color:#0a1a2f !important;
+}
+</style>
 <style id="cv-enhancements">
 /* ============================================================
    TARGETED ENHANCEMENTS — stat cards (sidebar) + language
