@@ -7197,6 +7197,178 @@ html[dir="rtl"] .qr-bottom { direction: rtl; }
   box-shadow:0 -8px 22px rgba(0,0,0,.35) !important;
 }
 </style>
+<style id="cv-enhancements">
+/* ============================================================
+   TARGETED ENHANCEMENTS — stat cards (sidebar) + language
+   dropdown. Nothing else is touched.
+   ============================================================ */
+
+/* ============================================================
+   STAT CARDS — sidebar
+   Was: ghosted gradient numbers, awkward label wraps, weak
+   borders. Now: solid accent numbers, clean labels, accent top
+   bar on hover.
+   ============================================================ */
+.sidebar .stats-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, 1fr) !important;
+  gap:14px !important;
+  margin-bottom:30px !important;
+}
+
+.sidebar .stat-card{
+  background:rgba(78,163,217,.07) !important;
+  border:1px solid rgba(78,163,217,.18) !important;
+  border-radius:12px !important;
+  padding:18px 12px !important;
+  text-align:center !important;
+  position:relative !important;
+  overflow:hidden !important;
+  transition:background .25s ease, border-color .25s ease, transform .25s ease !important;
+}
+.sidebar .stat-card::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0; left:0; right:0;
+  height:2px !important;
+  background:#4ea3d9 !important;
+  opacity:0 !important;
+  transition:opacity .25s ease !important;
+}
+.sidebar .stat-card:hover{
+  background:rgba(78,163,217,.14) !important;
+  border-color:rgba(78,163,217,.42) !important;
+  transform:translateY(-2px) !important;
+}
+.sidebar .stat-card:hover::before{ opacity:1 !important; }
+
+.sidebar .stat-number{
+  /* kill the ghosted gradient text */
+  background:none !important;
+  -webkit-background-clip:initial !important;
+  background-clip:initial !important;
+  -webkit-text-fill-color:#4ea3d9 !important;
+  color:#4ea3d9 !important;
+  font-size:32px !important;
+  font-weight:800 !important;
+  line-height:1.1 !important;
+  margin-bottom:8px !important;
+  letter-spacing:-.02em !important;
+  font-family:'Outfit', system-ui, sans-serif !important;
+  display:block !important;
+}
+
+.sidebar .stat-label{
+  color:#d6e4f2 !important;
+  font-size:11px !important;
+  font-weight:600 !important;
+  opacity:1 !important;
+  letter-spacing:.06em !important;
+  line-height:1.4 !important;
+  text-transform:uppercase !important;
+  display:block !important;
+}
+
+/* ============================================================
+   LANGUAGE DROPDOWN
+   Was: tiny pill button, plain dark dropdown. Now: bigger,
+   cleaner button with rotating chevron + dark marine menu with
+   accent highlight on current selection.
+   ============================================================ */
+.lang-ddn-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  background:rgba(255,255,255,.10) !important;
+  color:#ecf0f3 !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  border-radius:10px !important;
+  padding:6px 12px !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+  line-height:1 !important;
+  cursor:pointer !important;
+  transition:background .18s ease, border-color .18s ease !important;
+}
+.lang-ddn-btn:hover{
+  background:rgba(78,163,217,.22) !important;
+  border-color:rgba(78,163,217,.5) !important;
+}
+.lang-ddn-btn .flag-ico{
+  width:22px !important;
+  height:14px !important;
+  border-radius:3px !important;
+  box-shadow:0 1px 3px rgba(0,0,0,.4) !important;
+  object-fit:cover !important;
+  flex-shrink:0 !important;
+}
+.lang-ddn-btn .fa-chevron-down{
+  font-size:9px !important;
+  opacity:.7 !important;
+  margin-inline-start:2px !important;
+  transition:transform .2s ease !important;
+}
+.lang-ddn-btn[aria-expanded="true"] .fa-chevron-down{ transform:rotate(180deg) !important; }
+
+.lang-ddn-menu{
+  position:absolute !important;
+  top:calc(100% + 8px) !important;
+  right:0 !important;
+  min-width:178px !important;
+  background:rgba(10,26,47,.96) !important;
+  border:1px solid rgba(78,163,217,.28) !important;
+  border-radius:12px !important;
+  box-shadow:0 14px 36px rgba(0,0,0,.5) !important;
+  padding:6px !important;
+  display:none !important;
+  z-index:1300 !important;
+  backdrop-filter:blur(14px) !important;
+  -webkit-backdrop-filter:blur(14px) !important;
+}
+.lang-ddn-menu.open{ display:block !important; }
+
+.lang-ddn-item{
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  width:100% !important;
+  text-align:start !important;
+  background:transparent !important;
+  color:#d6e4f2 !important;
+  border:none !important;
+  border-radius:8px !important;
+  padding:8px 10px !important;
+  font-size:13px !important;
+  font-weight:500 !important;
+  cursor:pointer !important;
+  transition:background .15s ease, color .15s ease !important;
+}
+.lang-ddn-item:hover{
+  background:rgba(78,163,217,.18) !important;
+  color:#fff !important;
+}
+.lang-ddn-item .flag-ico{
+  width:22px !important;
+  height:14px !important;
+  border-radius:3px !important;
+  object-fit:cover !important;
+  flex-shrink:0 !important;
+}
+.lang-ddn-item.current{
+  background:rgba(78,163,217,.22) !important;
+  color:#fff !important;
+  font-weight:600 !important;
+}
+
+/* RTL: mirror placement so the dropdown sits on the left edge */
+html[dir="rtl"] .lang-ddn-menu{ right:auto !important; left:0 !important; }
+
+/* mobile tweaks carried over */
+@media (max-width:768px){
+  .lang-ddn-btn{ padding:5px 10px !important; font-size:12px !important; }
+  .lang-ddn-btn .flag-ico{ width:18px !important; height:12px !important; }
+}
+</style>
 </body>
 
 </html><style> .lang-btn{display:none!important;} #lang-switcher-old,.lang-switcher.lang-old,div.lang-switcher:not(#lang-switcher){display:none!important;} </style>
