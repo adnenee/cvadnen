@@ -3473,6 +3473,7 @@
 </style></head>
 
 <body id="top">
+    <a href="#main" class="skip-link">Skip to main content</a>
     <!-- Navigation Menu -->
     <nav class="nav-menu">
         <div class="nav-container">
@@ -3492,13 +3493,13 @@
                     <a href="https://tn.linkedin.com/in/adnane-cherif-943026209" target="_blank" class="social-button linkedin" title="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://www.researchgate.net/profile/Chrif-Adnen" target="_blank" class="social-button researchgate" title="ResearchGate Profile"><i class="fab fa-researchgate"></i></a>
                     <a href="mailto:Adnen2fr@yahoo.fr" class="social-button email" title="Send Email"><i class="fas fa-envelope"></i></a>
-                </div><button class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()">
+                </div><button class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
 
         <!-- Mobile menu dropdown - separate element -->
-        <div id="mobileMenu">
+        <div id="mobileMenu" inert>
             <div class="mobile-links-container">
                 <a href="#experience" onclick="closeMobileMenu()">Experience</a>
                 <a href="#education" onclick="closeMobileMenu()">Education</a>
@@ -3516,7 +3517,7 @@
         <div class="scroll-progress" id="scrollProgress"></div>
     </div>
 
-    <div class="cv-wrapper">
+    <div class="cv-wrapper" id="main" tabindex="-1">
         <div class="cv-container">
             <!-- Sidebar -->
             <div class="sidebar">
@@ -6706,14 +6707,21 @@
             const mobileMenu = document.getElementById('mobileMenu');
             const navToggle = document.getElementById('navToggle');
             const icon = navToggle.querySelector('i');
-            
+
+            const willOpen = !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active');
-            
-            if (mobileMenu.classList.contains('active')) {
+
+            if (willOpen) {
                 icon.className = 'fas fa-times';
+                navToggle.setAttribute('aria-expanded', 'true');
+                navToggle.setAttribute('aria-label', 'Close navigation menu');
+                mobileMenu.removeAttribute('inert');
                 document.body.style.overflow = 'hidden';
             } else {
                 icon.className = 'fas fa-bars';
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Open navigation menu');
+                mobileMenu.setAttribute('inert', '');
                 document.body.style.overflow = '';
             }
         }
@@ -6721,13 +6729,16 @@
         function closeMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const navToggle = document.getElementById('navToggle');
-            
+
             if (mobileMenu.classList.contains('active')) {
                 mobileMenu.classList.remove('active');
                 if (navToggle) {
                     const icon = navToggle.querySelector('i');
                     icon.className = 'fas fa-bars';
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navToggle.setAttribute('aria-label', 'Open navigation menu');
                 }
+                mobileMenu.setAttribute('inert', '');
                 document.body.style.overflow = '';
             }
         }
@@ -7322,6 +7333,40 @@ html[dir="rtl"] .qr-bottom { direction: rtl; }
   .cv-container{ box-shadow:none !important; }
 }
 </style>
+<style id="cv-a11y">
+/* ============================================================
+   ACCESSIBILITY
+   - Skip-to-main link (visible on focus only)
+   - Hidden mobile menu is removed from tab order via [inert]
+   ============================================================ */
+.skip-link{
+  position:absolute !important;
+  left:-9999px !important;
+  top:auto !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
+  z-index:-1 !important;
+}
+.skip-link:focus{
+  left:12px !important;
+  top:12px !important;
+  width:auto !important;
+  height:auto !important;
+  overflow:visible !important;
+  padding:10px 18px !important;
+  background:#4ea3d9 !important;
+  color:#fff !important;
+  font-weight:700 !important;
+  font-size:14px !important;
+  border-radius:6px !important;
+  text-decoration:none !important;
+  z-index:10000 !important;
+  outline:2px solid #fff !important;
+  outline-offset:2px !important;
+}
+</style>
+
 <style id="cv-enhancements">
 /* ============================================================
    TARGETED ENHANCEMENTS — stat cards (sidebar) + language
