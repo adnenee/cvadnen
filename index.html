@@ -7231,6 +7231,65 @@ html[dir="rtl"] .qr-bottom { direction: rtl; }
   .nav-logo{ max-width:130px !important; }
 }
 </style>
+<style id="cv-mobile-overflow-fix">
+/* ============================================================
+   MOBILE OVERFLOW FIXES — defects found by audit_multi.js at
+   390vw viewport (clipped content invisible to the user).
+
+   1. Publications table inside .experience-item had no
+      table-layout rule + no word-break on cells, so its natural
+      width (long journal titles + author lists) forced sw=619 in
+      a cw=366 card. Forced fixed layout + word-break so cells
+      wrap cleanly into multiple lines at any width.
+   2. .description divs containing long URLs / unbreakable
+      strings had sw=604 in a cw=336 card. word-wrap forces them
+      to wrap.
+   3. The root .cv-wrapper had sw=418 in a cw=388 viewport at
+      390vw (30px overflow being clipped by its overflow:hidden).
+      Root cause: the publications table below. Once the table
+      is fixed at #1, this disappears, but we add min-width:0
+      defensively on the grid items.
+   ============================================================ */
+
+/* descriptions — used by bullet lists, links, long sentences */
+.description,
+.description p,
+.description li,
+.description ul{
+  overflow-wrap:break-word !important;
+  word-wrap:break-word !important;
+}
+
+/* tables inside experience-items (publications etc.) */
+.experience-item table{
+  table-layout:fixed !important;
+  width:100% !important;
+}
+.experience-item table th,
+.experience-item table td{
+  word-break:break-word !important;
+  overflow-wrap:break-word !important;
+  font-size:12px !important;
+}
+
+/* defensive: stop the grid items from blowing out the wrapper */
+.cv-wrapper,
+.cv-container,
+.sidebar,
+.main-content{
+  min-width:0 !important;
+}
+
+/* on the narrowest viewports, drop table font further + collapse
+   the Description column padding so cells still breathe. */
+@media (max-width:480px){
+  .experience-item table th,
+  .experience-item table td{
+    padding:6px !important;
+    font-size:11px !important;
+  }
+}
+</style>
 <style id="cv-enhancements">
 /* ============================================================
    TARGETED ENHANCEMENTS — stat cards (sidebar) + language
