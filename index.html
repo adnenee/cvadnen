@@ -7206,6 +7206,30 @@ html[dir="rtl"] .qr-bottom { direction: rtl; }
 #mobileMenu{
   background:rgba(10,26,47,.98) !important;
 }
+
+/* ---- TEXT CLIPPING FIXES (defects found by full_audit.js) ----
+   (1) .name (sidebar h1) is set to nowrap + 28px, but at the
+       default sidebar width the rendered "Pr. Dr. Eng. CHERIF
+       Adnane" is ~360px wide while the box is only ~340px ->
+       the last ~20px is clipped with ellipsis on the live site.
+       Allow wrapping so the name stays large but never clips.
+   (2) .nav-logo max-width 190px from #cv-nav-fit ellipsises the
+       full name even at desktop (1440vw). Bump to 260px so the
+       full "PROF. DR. ENG. CHERIF ADNANE" shows on desktop. The
+       700vw media query still caps at 130px on small screens.    */
+.name{
+  white-space:normal !important;
+  overflow-wrap:break-word !important;
+  line-height:1.15 !important;
+}
+</style>
+<style id="cv-clipping-fix">
+.nav-logo{
+  max-width:260px !important;
+}
+@media (max-width:700px){
+  .nav-logo{ max-width:130px !important; }
+}
 </style>
 <style id="cv-enhancements">
 /* ============================================================
