@@ -7473,11 +7473,19 @@ html[dir="rtl"] .lang-ddn-menu{ right:auto !important; left:0 !important; }
    - Sizes the inline Icons8 (flat-color-icons) SVGs. These are
      genuinely multi-colour artwork, so they carry the colour and
      the text stays neutral.
+
+   SPECIFICITY NOTE: the original per-section tints use
+     .main-content .section:nth-child(N) .section-title
+   which is specificity (0,0,4,0). Our overrides below use
+     .main-content .section .section-title.section-title
+   which is (0,0,4,0) too - same specificity, but we are later
+   in the cascade so we win. Without this, the green/purple/red
+   rainbow tints on each section stay visible.
    ============================================================ */
 
-/* ---------- shared shape ---------- */
-.main-content .section-title,
-.sidebar .section-title{
+/* ---------- shared shape (specificity 4 = beats nth-child(N)) ---------- */
+.main-content .section .section-title.section-title,
+.sidebar .section .section-title.section-title{
   display:flex !important;
   align-items:center !important;
   gap:13px !important;
@@ -7490,19 +7498,20 @@ html[dir="rtl"] .lang-ddn-menu{ right:auto !important; left:0 !important; }
   box-shadow:none !important;
   text-shadow:none !important;
   backdrop-filter:none !important;
+  background-image:none !important;
   border-top:none !important;
   border-right:none !important;
   border-bottom:none !important;
 }
 
 /* kill the decorative pseudo-elements the old titles used */
-.main-content .section-title::before,
-.main-content .section-title::after,
-.sidebar .section-title::before,
-.sidebar .section-title::after{ display:none !important; }
+.main-content .section .section-title::before,
+.main-content .section .section-title::after,
+.sidebar .section .section-title::before,
+.sidebar .section .section-title::after{ display:none !important; }
 
 /* ---------- main content: dark text on the white panel ---------- */
-.main-content .section-title{
+.main-content .section .section-title.section-title{
   background:linear-gradient(90deg,
     rgba(78,163,217,.11) 0%,
     rgba(78,163,217,.04) 55%,
@@ -7514,7 +7523,7 @@ html[dir="rtl"] .lang-ddn-menu{ right:auto !important; left:0 !important; }
 }
 
 /* ---------- sidebar: light text on the marine panel ---------- */
-.sidebar .section-title{
+.sidebar .section .section-title.section-title{
   background:linear-gradient(90deg,
     rgba(78,163,217,.16) 0%,
     rgba(78,163,217,.05) 60%,
@@ -7526,7 +7535,7 @@ html[dir="rtl"] .lang-ddn-menu{ right:auto !important; left:0 !important; }
 }
 
 /* ---------- the real Icons8 artwork ---------- */
-.section-title-icon{
+.section-title .section-title-icon{
   width:30px !important;
   height:30px !important;
   flex:0 0 auto !important;
@@ -7540,8 +7549,15 @@ html[dir="rtl"] .lang-ddn-menu{ right:auto !important; left:0 !important; }
 
 /* responsive: shrink a touch on small screens */
 @media (max-width:768px){
-  .main-content .section-title{ font-size:18px !important; padding:12px 14px !important; gap:10px !important; }
-  .section-title-icon{ width:26px !important; height:26px !important; }
+  .main-content .section .section-title.section-title{
+    font-size:18px !important;
+    padding:12px 14px !important;
+    gap:10px !important;
+  }
+  .section-title .section-title-icon{
+    width:26px !important;
+    height:26px !important;
+  }
 }
 
 /* contact-icon SVGs (replacing fa-quote-right / fa-chart-line /
