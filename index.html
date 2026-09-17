@@ -7159,6 +7159,44 @@ else { build(); }
 html[dir="rtl"] .qr-bottom { direction: rtl; }
 </style>
 </div></div></div></div></div></div></div>
+<style id="cv-marine-minimal">
+/* ============================================================
+   MINIMAL MARINE — recolor ONLY the three elements the user
+   asked for: sidebar (left panel), nav bar (top), and the
+   moving-text-banner (bottom marquee).
+   Nothing else in the page is touched.
+   ============================================================ */
+
+/* ---- left panel ---- */
+.sidebar{
+  background:linear-gradient(180deg,#0a1a2f 0%,#071426 100%) !important;
+  color:#fff !important;
+}
+/* ::before on sidebar is a decorative white stripe in the
+   original — on the dark marine panel it would look like a
+   white band, so make it transparent.                          */
+.sidebar::before{ background:transparent !important; }
+/* profile-section::before similarly was a white accent; leave
+   it but recolor to a marine accent so it doesn't look broken.  */
+.profile-section::before{ background:transparent !important; }
+
+/* ---- top nav ---- */
+.nav-menu{
+  background:rgba(10,26,47,.92) !important;
+  border-bottom:1px solid rgba(78,163,217,.18) !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.35) !important;
+}
+
+/* ---- bottom marquee ---- */
+.moving-text-banner{
+  background:linear-gradient(135deg,
+    rgba(10,26,47,.95) 0%,
+    rgba(18,44,76,.95) 50%,
+    rgba(10,26,47,.95) 100%) !important;
+  border-top:1px solid rgba(78,163,217,.22) !important;
+  box-shadow:0 -8px 22px rgba(0,0,0,.35) !important;
+}
+</style>
 </body>
 
 </html><style> .lang-btn{display:none!important;} #lang-switcher-old,.lang-switcher.lang-old,div.lang-switcher:not(#lang-switcher){display:none!important;} </style>
